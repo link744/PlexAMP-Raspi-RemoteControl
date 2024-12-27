@@ -1,0 +1,15 @@
+[Unit]
+Description=Plexir
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/
+ExecStart=/usr/bin/python3 /home/pi/plexIRloop.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
