@@ -1,14 +1,13 @@
-
-Hardware required:
-1. Raspi 4 4GB (other versions should work)
-2. IR sensor
-3. IR Remote control
-
 This set of scripts does a few things:
 1. plexamp.service can be used to automatically run PlexAmp on 
 2. remote.conf is used by lircd.service for config of the remote control
 3. plexIRloop.py is the main python script used to read the remote control and send controls to plexamp service
 4. plexir.service is used to turn the plexIRloop service on automatically
+
+Hardware required:
+1. Raspi 4 4GB (other versions should work)
+2. IR sensor
+3. IR Remote control
 
 Pre-reqs:
 1. Setup your Raspi with Ubuntu Linux Server (no GUI required). 64bit was tested.
