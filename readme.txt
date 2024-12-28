@@ -1,3 +1,5 @@
+Summary: A way to setup PlexAMP headless on a Raspi and control your raspi using a IR remote control.  The remote control allows volume changes, play pause, skip next/previous, and the nunbers of the remote control can start playlists.  Uses PlexAPI to make this all happen.  Also includes voice feedback via text to speech algo. 
+
 This set of scripts does a few things:
 1. plexamp.service can be used to automatically run PlexAmp on 
 2. remote.conf is used by lircd.service for config of the remote control
