@@ -6,14 +6,36 @@ This set of scripts does a few things:
 
 Hardware required:
 1. Raspi 4 4GB (other versions should work)
-2. IR sensor
-3. IR Remote control
+2. IR sensor*
+3. IR Remote control*
+* I got both these from here: https://www.amazon.com/gp/product/B01D8KOZF4/ref=ppx_yo_dt_b_search_asin_image?ie=UTF8&psc=1
 
-Pre-reqs:
-1. Setup your Raspi with Ubuntu Linux Server (no GUI required). 64bit was tested.
-2. Setup your Raspi initially using 'sudo raspi-config' for wifi ec
-3. Ensure alsamixer works because that is how the remote controls the volume of the raspi
-4. Install PlexAMP according to their instructions including configuration of at 'http://plexampip:32500'
-5. Setup the lircd service and ensure it automatically starts upon boot (sudo systemctl enable lircd service)
-6. Enable all services above including plexir and check to ensure everything is happy (sudo systemctl status plexamp lircd plexir)
+Detailed Instructions:
+1. Install Rasbian OS 64bit Lite from this website.  You just need a small SD card, 4GB is all.
+2. Connect to Wifi, make a user. Here I made user = pi.  Use 'sudo raspi-config' for any details.  Ensure alsamixer works for volume control.
+3. Follow PlexAMP instructions to install Install Node JS.
+4. Download PlexAmp headless here: https://forums.plex.tv/t/plexamp-on-the-raspberry-pi/791500
+5. Run PlexAmp!  Open the URL of your player and signin and make sure everything works.  (ie visiting 'http://IPADDRESS:32500')
+6. Create your PlexAmp service....I supplied plexamp.service for this purpose.
+7. Enable the service:
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable plexamp
+$ sudo systemctl start plexamp
+8. Next stepup the IR remote following these instructions:
+https://www.instructables.com/Setup-IR-Remote-Control-Using-LIRC-for-the-Raspber/
+9. Im using a egloo remote using the config file in the attached repo orginally found here:
+https://github.com/greenring/ElegooRemote/blob/master/elegoo.lircd.conf
+10. Now install some dependencies:
+ sudo apt update && sudo apt upgrade -y
+ sudo apt install python3-pip
+ pip install pyttsx
+ sudo apt install libespeak1
+ pip install PlexAPI
+ pip install python-weather
+11. Now finally run your plexIRloop.py via python3 to test
+12. And turn it into a service 
+ sudo cp plexir.service /lib/systemd/system/
+ sudo systemctl enable plexir
+
+13. Enable all services above including plexir and check to ensure everything is happy (sudo systemctl status plexamp lircd plexir)
 
